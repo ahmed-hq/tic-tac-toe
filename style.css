@@ -5,3 +5,8 @@
   --green: hsl(140.57, 51.22%, 40.2%);
   --red: hsl(8.09, 80.18%, 56.47%);
 }
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+}
