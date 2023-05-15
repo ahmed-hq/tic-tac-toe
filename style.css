@@ -9,4 +9,19 @@
 body {
   background-color: var(--black);
   color: var(--white);
+  font-family: "VT323", monospace;
+  margin: 0;
+}
+
+button {
+  width: 100%;
+  font-family: "VT323", monospace;
+  font-size: 32px;
+  line-height: 32px;
+  padding: 12px;
+  border-radius: 15px;
+}
+
+.page-wrapper {
+  overflow: hidden;
 }
