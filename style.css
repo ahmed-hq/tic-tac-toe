@@ -24,15 +24,26 @@ button {
 
 .page-wrapper {
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .container {
+  margin: auto;
+}
+
+.game_board-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  width: 23rem;
   gap: 1rem;
 }
 
 .block {
-  width: 2rem;
-  height: 2rem;
+  width: 7rem;
+  height: 7rem;
   background-color: var(--light-black);
 }

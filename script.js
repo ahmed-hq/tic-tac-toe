@@ -6,10 +6,10 @@ const Gameboard = (() => {
   const gameBoard = ['', '', '', '', '', '', '', '', ''];
 
   const createBlocks = () => {
-    const container = document.querySelector('.container');
+    const gameBoardWrapper = document.querySelector('.game_board-wrapper');
     const block = document.createElement('div');
     block.setAttribute('class', 'block');
-    container.appendChild(block);
+    gameBoardWrapper.appendChild(block);
   };
 
   const render = () => {
