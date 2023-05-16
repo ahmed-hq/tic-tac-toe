@@ -14,11 +14,13 @@ body {
 }
 
 button {
-  width: 100%;
+  width: 9rem;
   font-family: "VT323", monospace;
   font-size: 32px;
   line-height: 32px;
-  padding: 12px;
+  color: var(--black);
+  padding: 0.5rem;
+  border: none;
   border-radius: 15px;
 }
 
@@ -33,6 +35,21 @@ button {
 
 .container {
   margin: auto;
+}
+
+.opponent_options-wrapper {
+  display: flex;
+  gap: 1rem;
+  background-color: var(--light-black);
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 1.3rem;
+  margin: 2rem 0rem;
+}
+
+.ai-btn{
+  opacity: 10%;
 }
 
 .game_board-wrapper {
