@@ -16,12 +16,19 @@ body {
 button {
   width: 9rem;
   font-family: "VT323", monospace;
+  background-color: var(--white);
   font-size: 1.5rem;
   line-height: 1.5rem;
   color: var(--black);
   padding: 0.5rem;
   border: none;
   border-radius: 15px;
+}
+button:hover {
+  opacity: 85%;
+}
+button:active {
+  opacity: 75%;
 }
 
 .page-wrapper {
@@ -52,8 +59,9 @@ button {
   opacity: 10%;
 }
 
+
 .game_board-wrapper {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   width: 23rem;
   margin: 2rem 0rem;
@@ -73,9 +81,14 @@ button {
   margin: 3rem 0rem;
 }
 
-.restart-btn {
+.restart-btn , .start-btn {
   width: 100%;
   padding: 1rem;
   font-size: 2rem;
+  display: none;
+}
+
+.start-btn {
+  display: inline-block;
 }
 
