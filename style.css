@@ -25,3 +25,14 @@ button {
 .page-wrapper {
   overflow: hidden;
 }
+
+.container {
+  display: flex;
+  gap: 1rem;
+}
+
+.block {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--light-black);
+}
