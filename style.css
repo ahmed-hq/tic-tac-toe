@@ -65,3 +65,17 @@ button {
   height: 7rem;
   background-color: var(--light-black);
 }
+
+.btns-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0rem;
+}
+
+.restart-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 2rem;
+}
+
