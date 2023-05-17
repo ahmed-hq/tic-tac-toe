@@ -1,5 +1,10 @@
-const Element = (() => {
+let player1;
+let player2;
+let mode;
+
+const element = (() => {
   const modeOption = document.querySelector('.mode_options-wrapper');
+  const signWrapper = document.querySelector('.sign-wrapper');
   const gameBoardWrapper = document.querySelector('.game_board-wrapper');
   const xBtn = document.querySelector('.x_option-btn');
   const oBtn = document.querySelector('.o_option-btn');
@@ -7,12 +12,21 @@ const Element = (() => {
   const botBtn = document.querySelector('.bot-btn');
   const startBtn = document.querySelector('.start-btn');
 
-  return { gameBoardWrapper, xBtn, oBtn, pvpBtn, botBtn, startBtn };
+  return {
+    modeOption,
+    signWrapper,
+    gameBoardWrapper,
+    xBtn,
+    oBtn,
+    pvpBtn,
+    botBtn,
+    startBtn,
+  };
 })();
 
-const Player = (s) => {
-  const playerSign = s;
-  return { playerSign };
+const Player = (btn) => {
+  const sign = btn.innerText;
+  return { sign };
 };
 
 const Btn = (btn1, btn2) => {
@@ -26,18 +40,19 @@ const Btn = (btn1, btn2) => {
   };
   const signActivation = () => {
     btn1.addEventListener('click', () => {
-      sign = btn1.innerText;
+      player1 = Player(btn1);
+      player2 = Player(btn2);
       btn1.style.opacity = '75%';
       btn2.style.opacity = '100%';
-      console.log(sign);
+      console.log(player1, player2);
     });
   };
   const startActivation = () => {
-    btn1.addEventListener('click', () => {
-      console.log('fool');
-      Element.gameBoardWrapper.style.display = 'flex';
-      Element.startBtn.style.display = 'none';
-    });
+    console.log(player1, player2, mode);
+    element.gameBoardWrapper.style.display = 'flex';
+    element.startBtn.style.display = 'none';
+    element.modeOption.style.display = 'none';
+    element.signWrapper.style.display = 'none';
   };
 
   return { modeActivation, signActivation, startActivation };
@@ -45,27 +60,34 @@ const Btn = (btn1, btn2) => {
 
 const board = (() => {
   const gameBoard = ['', '', '', '', '', '', '', '', ''];
-  let sign;
-  let mode;
 
-  const pvp = Btn(Element.pvpBtn, Element.botBtn);
-  const bot = Btn(Element.botBtn, Element.pvpBtn);
-  const x = Btn(Element.xBtn, Element.oBtn);
-  const o = Btn(Element.oBtn, Element.xBtn);
-  const start = Btn(Element.startBtn);
+  const pvp = Btn(element.pvpBtn, element.botBtn);
+  const bot = Btn(element.botBtn, element.pvpBtn);
+  const x = Btn(element.xBtn, element.oBtn);
+  const o = Btn(element.oBtn, element.xBtn);
+  const start = Btn(element.startBtn);
 
   pvp.modeActivation();
   bot.modeActivation();
   x.signActivation();
   o.signActivation();
-  start.startActivation();
 
-  const controllerChoice = () => {};
+  element.startBtn.addEventListener('click', () => {
+    if (!player1 & !mode) {
+      alert('Choose Gamplay Mode & Your Sign');
+    } else if (!player1) {
+      alert('Choose a sign');
+    } else if (!mode) {
+      alert('Choose Gamplay Mode');
+    } else {
+      start.startActivation();
+    }
+  });
 
   const createBlocks = () => {
     const block = document.createElement('div');
     block.setAttribute('class', 'block');
-    Element.gameBoardWrapper.appendChild(block);
+    element.gameBoardWrapper.appendChild(block);
   };
 
   const render = () => {
@@ -75,22 +97,3 @@ const board = (() => {
   render();
   return {};
 })();
-
-// const container = document.querySelector('')
-/// ////////////////////////////////////////////////////////
-// const Gameboard = (() => {
-//   const gameBoard = ['', '', '', '', '', '', '', '', ''];
-
-//   const render = (playerSign) => {
-//     for (let i = 0; i < gameBoard.length; i++) {
-//       document.createElement('div');
-//       document.setAttribute('class', 'squares');
-//       document.setAttribute('id', `square-${i}`);
-//       squares.textContent = `${playerSign}`;
-//       document.appendChild(squares);
-//     }
-//   };
-//   gameBoard.forEach((playerSign) => {});
-
-//   return {};
-// })();
