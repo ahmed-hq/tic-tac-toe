@@ -55,11 +55,6 @@ button:active {
   margin: 1rem 0rem;
 }
 
-.ai-btn{
-  opacity: 10%;
-}
-
-
 .game_board-wrapper {
   display: none;
   flex-wrap: wrap;

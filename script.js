@@ -23,23 +23,21 @@ const Gameboard = (() => {
   const xBtn = document.querySelector('.x_option-btn');
   const oBtn = document.querySelector('.o_option-btn');
   const pvpBtn = document.querySelector('.pvp-btn');
+  const botBtn = document.querySelector('.bot-btn');
 
-  pvpBtn.addEventListener('click', () => {
-    mode = 'pvp';
-    pvpBtn.style.opacity = '75%';
-  });
-  xBtn.addEventListener('click', () => {
-    sign = 'X';
-    xBtn.style.opacity = '75%';
-    oBtn.style.opacity = '100%';
-    console.log(sign);
-  });
-  oBtn.addEventListener('click', () => {
-    sign = 'O';
-    xBtn.style.opacity = '100%';
-    oBtn.style.opacity = '75%';
-    console.log(sign);
-  });
+  const btn = (btn1, btn2, type) => {
+    btn1.addEventListener('click', () => {
+      type = btn1.innerText;
+      btn1.style.opacity = '75%';
+      btn2.style.opacity = '100%';
+      console.log(type);
+    });
+  };
+
+  btn(pvpBtn, botBtn, mode);
+  btn(botBtn, pvpBtn, mode);
+  btn(xBtn, oBtn, sign);
+  btn(oBtn, xBtn, sign);
 
   const controllerChoice = () => {};
 
