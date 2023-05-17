@@ -44,7 +44,7 @@ button:active {
   margin: auto;
 }
 
-.opponent_options-wrapper , .sign-wrapper{
+.mode_options-wrapper , .sign-wrapper{
   display: flex;
   gap: 1rem;
   background-color: var(--light-black);
