@@ -11,6 +11,7 @@ const element = (() => {
   const pvpBtn = document.querySelector('.pvp-btn');
   const botBtn = document.querySelector('.bot-btn');
   const startBtn = document.querySelector('.start-btn');
+  const block = document.querySelectorAll('.block');
 
   return {
     modeOption,
@@ -21,6 +22,7 @@ const element = (() => {
     pvpBtn,
     botBtn,
     startBtn,
+    block,
   };
 })();
 
@@ -85,13 +87,22 @@ const board = (() => {
   });
 
   const createBlocks = () => {
-    const block = document.createElement('div');
-    block.setAttribute('class', 'block');
-    element.gameBoardWrapper.appendChild(block);
+    let pTurn = 'O';
+    for (let i = 0; i < gameBoard.length; i++) {
+      const block = document.createElement('div');
+      block.setAttribute('class', 'block');
+      block.setAttribute('id', `block-${i}`);
+      element.gameBoardWrapper.appendChild(block);
+      // make the sec click unavailable
+      block.addEventListener('click', () => {
+        pTurn = pTurn === 'X' ? 'O' : 'X';
+        block.innerText = pTurn;
+      });
+    }
   };
 
   const render = () => {
-    gameBoard.forEach(createBlocks);
+    createBlocks();
   };
 
   render();

@@ -23,6 +23,7 @@ button {
   padding: 0.5rem;
   border: none;
   border-radius: 15px;
+  transition: 200ms;
 }
 button:hover {
   opacity: 85%;
@@ -64,9 +65,20 @@ button:active {
 }
 
 .block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
   width: 7rem;
   height: 7rem;
   background-color: var(--light-black);
+  transition: 200ms;
+}
+.block:hover {
+  opacity: 85%;
+}
+.block:active {
+  opacity: 65%;
 }
 
 .btns-wrapper {
