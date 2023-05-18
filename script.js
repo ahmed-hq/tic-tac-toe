@@ -89,7 +89,7 @@ const board = (() => {
   const createBlocks = () => {
     let pTurn = 'O';
     for (let i = 0; i < gameBoard.length; i++) {
-      const block = document.createElement('div');
+      const block = document.createElement('button');
       block.setAttribute('class', 'block');
       block.setAttribute('id', `block-${i}`);
       element.gameBoardWrapper.appendChild(block);
@@ -97,6 +97,7 @@ const board = (() => {
       block.addEventListener('click', () => {
         pTurn = pTurn === 'X' ? 'O' : 'X';
         block.innerText = pTurn;
+        block.disabled = true
       });
     }
   };
