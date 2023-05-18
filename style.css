@@ -43,10 +43,11 @@ button:active {
 
 .container {
   margin: auto;
+  min-width: 20rem;
 }
 
 .mode_options-wrapper , .sign-wrapper{
-  display: flex;
+  display: none;
   gap: 1rem;
   background-color: var(--light-black);
   justify-content: center;
@@ -54,10 +55,6 @@ button:active {
   border-radius: 1rem;
   padding: 1.3rem;
   margin: 1rem 0rem;
-}
-
-.sign-wrapper {
-  display: none;
 }
 
 .game_board-wrapper {
