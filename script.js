@@ -37,6 +37,9 @@ const Btn = (btn1, btn2) => {
       mode = btn1.innerText;
       btn1.style.opacity = '75%';
       btn2.style.opacity = '100%';
+      mode === 'Bot'
+        ? (element.signWrapper.style.display = 'flex')
+        : (element.signWrapper.style.display = 'none');
       console.log(mode);
     });
   };
@@ -50,7 +53,7 @@ const Btn = (btn1, btn2) => {
     });
   };
   const startActivation = () => {
-    console.log(player1, player2, mode);
+    console.log(mode);
     element.gameBoardWrapper.style.display = 'flex';
     element.startBtn.style.display = 'none';
     element.modeOption.style.display = 'none';
@@ -76,8 +79,8 @@ const board = (() => {
 
   element.startBtn.addEventListener('click', () => {
     if (!player1 & !mode) {
-      alert('Choose Gamplay Mode & Your Sign');
-    } else if (!player1) {
+      alert('Choose Gamplay Mode');
+    } else if ((mode === 'Bot') & !player1) {
       alert('Choose a sign');
     } else if (!mode) {
       alert('Choose Gamplay Mode');
@@ -87,7 +90,7 @@ const board = (() => {
   });
 
   const createBlocks = () => {
-    let pTurn = 'O';
+    let pTurn;
     for (let i = 0; i < gameBoard.length; i++) {
       const block = document.createElement('button');
       block.setAttribute('class', 'block');
@@ -97,7 +100,7 @@ const board = (() => {
       block.addEventListener('click', () => {
         pTurn = pTurn === 'X' ? 'O' : 'X';
         block.innerText = pTurn;
-        block.disabled = true
+        block.disabled = true;
       });
     }
   };

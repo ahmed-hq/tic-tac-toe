@@ -56,6 +56,10 @@ button:active {
   margin: 1rem 0rem;
 }
 
+.sign-wrapper {
+  display: none;
+}
+
 .game_board-wrapper {
   display: none;
   flex-wrap: wrap;
