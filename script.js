@@ -35,14 +35,20 @@ const Btn = () => {
 };
 
 const board = (() => {
-  let round = 1;
-  let winner;
-  const gameOver = false;
-  let pTurn;
-
   const gameBoard = ['', '', '', '', '', '', '', '', ''];
-
+  let round = 1;
+  let pTurn;
   const start = Btn(element.startBtn);
+  const winConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
 
   const endGame = () => {
     element.restartBtn.style.display = 'inline-block';
@@ -56,17 +62,6 @@ const board = (() => {
       endGame();
     }
   };
-
-  const winConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
 
   const winnerCheck = () => {
     for (let i = 0; i <= winConditions.length; i += 1) {
@@ -97,7 +92,7 @@ const board = (() => {
         pTurn = pTurn === 'X' ? 'O' : 'X';
         gameBoard[block.dataset.block] = pTurn;
         block.disabled = true;
-        round++;
+        round += 1;
         block.innerText = gameBoard[i];
         winnerCheck();
         console.log(round);
@@ -105,26 +100,21 @@ const board = (() => {
     }
   };
 
-  const render = () => {
-    createBlocks();
-  };
-
   element.startBtn.addEventListener('click', () => {
-    render();
+    createBlocks();
     start.startActivation();
   });
-
   element.restartBtn.addEventListener('click', () => {
     round = 1;
     pTurn = '';
     element.gameBoardWrapper.replaceChildren();
-    for (let i = 0; i < gameBoard.length; i++) {
+    for (let i = 0; i < gameBoard.length; i += 1) {
       gameBoard[i] = '';
     }
     element.result.textContent = '';
     element.restartBtn.style.display = 'none';
     element.gameBoardWrapper.style.pointerEvents = 'all';
-    render();
+    createBlocks();
   });
 
   return {};
