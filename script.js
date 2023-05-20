@@ -52,38 +52,42 @@ const board = (() => {
   const drawCheck = () => {
     if (round === 10) {
       element.result.textContent = "It's Draw";
+      element.gameBoardWrapper.style.pointerEvents = 'none';
       endGame();
     }
   };
 
-  const winnerCheck = () => {
-    const winConditions = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
+  const winConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
 
-    for (let i = 0; i <= winConditions.length; i++) {
+  const winnerCheck = () => {
+    for (let i = 0; i <= winConditions.length; i += 1) {
       const a = gameBoard[winConditions[i][0]];
       const b = gameBoard[winConditions[i][1]];
       const c = gameBoard[winConditions[i][2]];
 
       if (!a || !b || !c) {
         continue;
-      } else if (a === b && b === c) {
-        element.result.textContent = `${a} Wins`;
+      }
+      if (a === b && b === c) {
+        element.result.textContent = `${b} Wins`;
         endGame();
-      } else continue;
+        element.gameBoardWrapper.style.pointerEvents = 'none';
+        break;
+      } else drawCheck();
     }
   };
 
   const createBlocks = () => {
-    for (let i = 0; i < gameBoard.length; i++) {
+    for (let i = 0; i < gameBoard.length; i += 1) {
       const block = document.createElement('button');
       block.setAttribute('class', 'block');
       block.dataset.block = i;
@@ -95,7 +99,6 @@ const board = (() => {
         block.disabled = true;
         round++;
         block.innerText = gameBoard[i];
-        drawCheck();
         winnerCheck();
         console.log(round);
       });
@@ -120,6 +123,7 @@ const board = (() => {
     }
     element.result.textContent = '';
     element.restartBtn.style.display = 'none';
+    element.gameBoardWrapper.style.pointerEvents = 'all';
     render();
   });
 
