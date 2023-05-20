@@ -26,11 +26,6 @@ const element = (() => {
   };
 })();
 
-const Player = (btn) => {
-  const sign = btn.innerText;
-  return { sign };
-};
-
 const Btn = () => {
   const startActivation = () => {
     element.gameBoardWrapper.style.display = 'flex';
@@ -43,7 +38,6 @@ const board = (() => {
   let round = 1;
   let winner;
   const gameOver = false;
-  let winConditions;
   let pTurn;
 
   const gameBoard = ['', '', '', '', '', '', '', '', ''];
@@ -52,12 +46,39 @@ const board = (() => {
 
   const endGame = () => {
     element.restartBtn.style.display = 'inline-block';
+    element.block.disabled = true;
   };
 
   const drawCheck = () => {
     if (round === 10) {
       element.result.textContent = "It's Draw";
       endGame();
+    }
+  };
+
+  const winnerCheck = () => {
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i <= winConditions.length; i++) {
+      const a = gameBoard[winConditions[i][0]];
+      const b = gameBoard[winConditions[i][1]];
+      const c = gameBoard[winConditions[i][2]];
+
+      if (!a || !b || !c) {
+        continue;
+      } else if (a === b && b === c) {
+        element.result.textContent = `${a} Wins`;
+        endGame();
+      } else continue;
     }
   };
 
@@ -75,16 +96,11 @@ const board = (() => {
         round++;
         block.innerText = gameBoard[i];
         drawCheck();
+        winnerCheck();
         console.log(round);
       });
     }
   };
-
-  // const blockClick = () => {
-  //   element.block.addEventListener('click', () => {
-  //     pTurn = pTurn === 'X' ? 'O' : 'X';
-  //   });
-  // };
 
   const render = () => {
     createBlocks();
