@@ -6,6 +6,7 @@ const element = (() => {
   const oBtn = document.querySelector('.o_option-btn');
   const pvpBtn = document.querySelector('.pvp-btn');
   const botBtn = document.querySelector('.bot-btn');
+  const result = document.querySelector('.show-result');
   const startBtn = document.querySelector('.start-btn');
   const restartBtn = document.querySelector('.restart-btn');
   const block = document.querySelectorAll('.block');
@@ -18,6 +19,7 @@ const element = (() => {
     oBtn,
     pvpBtn,
     botBtn,
+    result,
     startBtn,
     restartBtn,
     block,
@@ -54,6 +56,7 @@ const board = (() => {
 
   const drawCheck = () => {
     if (round === 10) {
+      element.result.textContent = "It's Draw";
       endGame();
     }
   };
@@ -72,7 +75,7 @@ const board = (() => {
         round++;
         block.innerText = gameBoard[i];
         drawCheck();
-        console.log(round)
+        console.log(round);
       });
     }
   };
@@ -95,10 +98,11 @@ const board = (() => {
   element.restartBtn.addEventListener('click', () => {
     round = 1;
     pTurn = '';
-    element.gameBoardWrapper.replaceChildren()
+    element.gameBoardWrapper.replaceChildren();
     for (let i = 0; i < gameBoard.length; i++) {
       gameBoard[i] = '';
     }
+    element.result.textContent = '';
     element.restartBtn.style.display = 'none';
     render();
   });

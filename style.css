@@ -57,6 +57,16 @@ button:active {
   margin: 1rem 0rem;
 }
 
+.show-result_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.show-result {
+  font-size: 5rem;
+  font-weight: 400;
+}
+
 .game_board-wrapper {
   display: none;
   flex-wrap: wrap;
